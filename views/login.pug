@@ -1,0 +1,106 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel="stylesheet", href="/stylesheets/MS.css")
+		link(rel="stylesheet", href="/stylesheets/login.css")
+		title 맛집 GO
+	body
+		// 네비게이션 바
+		nav.navbar.navbar-default
+			.container-fluid
+				.nav-header
+					button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")
+						span.sr-only
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="/")   맛집 GO   
+				#bs-example-navbar-collapse-1.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/")
+								| 소개 
+								span.sr-only
+						li
+							a(href="/month")  이달의 맛집
+						li.dropdwn
+							a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+								| 게시판 
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="#")  맛집 탐방 
+								li
+									a(href="#")  가입 인사 
+								li
+									a(href="#")  리뷰 모아보기 
+								li
+									a(href="#")  내 주변 맛집 
+					form.navbar-form.navbar-right
+						.fomr-group
+							input(type="text", calss="form-control", placeholder="내용을 입력하세요.")
+							button.btn.btn-default(type="submit") 검색 
+					ul.nav.navbar-nav.navbar-right
+						li.dropdown
+							a.dropdwon-toggle(href="#", data-toggle="dropdown", role="button")
+								| Login
+								span.caret
+							ul.dropdown-menu
+								li.active
+									a(href="/login")  로그인 
+								li
+									a(href="/User_registeration")  회원 가입 
+		// 로그인 박스
+		.login-body
+			article.container-login.center-block
+				section
+					ul#top-bar.nav.nav-tabs.nav-justified
+						li.active
+							a(href="/login") Login
+						li
+							a(href="/User_registeration") Registration
+					.tab-content.tabs-login.col-lg-12.col-md-12.col-sm-12.cols-xs-12
+						#login-access.tab-pane.fade.active.in
+							h2
+								i.glyphicon.glyphicon-log-in
+								|  Login
+							form.form-horizontal(method="post", action='/login_post', accept-charset="utf-8", autocomplete="off", role="form")
+								.form-group
+									label.sr-only(for="login") ID
+									input#login_value.form-control(type="text", name="login", placeholder="ID", tabindex="1", value="")
+								.form-group
+									label.sr-only(for="password") Password
+									input#password.form-control(type="password", name="password", placeholder="Password", value="", tabindex="2")
+								br
+								.form-group
+									button#submit.btn.btn-lg.btn-primary(type="submit", name="log-me-in", tabindex="5") 확인
+		// 푸터를 밖으로 꺼내기 위해 한줄 추가
+		.row
+		footer(style="background-color: firebrick; color:white ")
+			div(calss="container")
+				br
+				.row
+					.col-sm-12(style="text-align: center;")
+						h5 Copyright © 2017
+						h5  4조 김규도, 김진원 
+		// 모달 구현
+		.row
+			#modal.modal(tabindex="-1")
+				.modal-dialog
+					.modal-content
+						.modal-header
+							| 이달의 맛집
+							button.close(data-dimiss="modal") ×
+						.modal-body(style="text-align: center;")
+							| 서울시 XX시 XX구 초밥집 
+							br
+							|                             연어초밥으로 유명한 초밥집. 
+							br
+							|                             저렴한 가격으로 즐기고 싶다면 이곳에서 
+							br
+							img#imagepreview(src="/images/mainimage/b.jpg", style="width: 400; height: 256px;")
+		script(src="https://code.jquery.com/jquery-3.1.1.min.js")
+		script(src="/javascripts/bootstrap.js")

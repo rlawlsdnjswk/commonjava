@@ -1,0 +1,102 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel="stylesheet", href="/stylesheets/MS.css")
+		title 맛집 GO
+	body
+		// 점보트론을 사용한 메인페이지
+		style(type="text/css").
+			.jumbotron {
+			background-image: url('/images/mainimage/a.jpg');
+			background-size: cover;
+			text-shadow: black 0.2em 0.2em 0.2em;
+			color : white;
+			}
+		// 네비게이션 바
+		nav.navbar.navbar-default
+			.container-fluid
+				.nav-header
+					button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")
+						span.sr-only
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="#/")   맛집 GO   
+				#bs-example-navbar-collapse-1.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li.active
+							a(href="#/")
+								| 소개 
+								span.sr-only
+						li
+							a(href="/month")  이달의 맛집
+						li.dropdwn
+							a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+								| 게시판 
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="#")  맛집 탐방 
+								li
+									a(href="#")  가입 인사 
+								li
+									a(href="#")  리뷰 모아보기 
+								li
+									a(href="#")  내 주변 맛집 
+					form.navbar-form.navbar-right
+						.fomr-group
+							input(type="text", calss="form-control", placeholder="내용을 입력하세요.")
+							button.btn.btn-default(type="submit") 검색 
+					ul.nav.navbar-nav.navbar-right
+						li.dropdown
+							a.dropdwon-toggle(href="#", data-toggle="dropdown", role="button")
+								| Login
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="/login")  로그인 
+								li
+									a(href="/user_registeration")  회원 가입 
+		.container
+			.jumbotron
+				h1(calss="text-center") 원하는 맛집으로 가는 빠른 길
+				p.text-center  포켓몬 고가 아닙니다
+			.row
+				.col-md-6
+					h4 이달의 맛집
+					p  맛난 초밥을 먹고싶다면 이곳으로 오세요- 서울시 XX구 XX동 초밥집
+					p
+						a.btn.btn-default(data-target="#modal", data-toggle="modal") 보기
+				.col-md-6
+					h4 건강 상식
+					p  인스턴트 식품- 어디까지 전자레인지에 돌려도 될까?
+					p
+						a.btn.btn-default(data-target="#modal", data-toggle="modal") 보기
+		footer(style="background-color: firebrick; color:white ")
+			div(calss="container")
+				br
+				.row
+					.col-sm-12(style="text-align: center;")
+						h5 Copyright © 2017
+						h5  4조 김규도, 김진원 
+		// 모달 구현
+		.row
+			#modal.modal(tabindex="-1")
+				.modal-dialog
+					.modal-content
+						.modal-header
+							| 이달의 맛집
+							button.close(data-dimiss="modal") ×
+						.modal-body(style="text-align: center;")
+							| 서울시 XX시 XX구 초밥집 
+							br
+							|                             연어초밥으로 유명한 초밥집. 
+							br
+							|                             저렴한 가격으로 즐기고 싶다면 이곳에서 
+							br
+							img#imagepreview(src="/images/mainimage/b.jpg", style="width: 400; height: 256px;")
+		script(src="https://code.jquery.com/jquery-3.1.1.min.js")
+		script(src="/javascripts/bootstrap.js")

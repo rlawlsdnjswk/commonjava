@@ -1,0 +1,120 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel="stylesheet", href="/stylesheets/MS.css")
+		link(rel="stylesheet", href="/stylesheets/login.css")
+		title 맛집 GO
+	body
+		style.
+			/*모달 창을 하얀색만 보이기 위해서 스타일 정의*/
+			.modal-backdrop{height:22%; }
+        
+		// 네비게이션 바
+		nav.navbar.navbar-default
+			.container-fluid
+				.nav-header
+					button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")
+						span.sr-only
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="/")   맛집 GO   
+				#bs-example-navbar-collapse-1.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/")
+								| 소개 
+								span.sr-only
+						li
+							a(href="/month")  이달의 맛집
+						li.dropdwn
+							a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+								| 게시판 
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="#")  맛집 탐방 
+								li
+									a(href="#")  가입 인사 
+								li
+									a(href="#")  리뷰 모아보기 
+								li
+									a(href="#")  내 주변 맛집 
+					form.navbar-form.navbar-right
+						.fomr-group
+							input(type="text", calss="form-control", placeholder="내용을 입력하세요.")
+							button.btn.btn-default(type="submit") 검색 
+					ul.nav.navbar-nav.navbar-right
+						li.dropdown
+							a.dropdwon-toggle(href="#", data-toggle="dropdown", role="button")
+								| Login
+								span.caret
+							ul.dropdown-menu
+								li.active
+									a(href="/login")  로그인 
+								li
+									a(href="/user_registeration")  회원 가입 
+		// 로그인 박스
+		.login-body
+			article.container-login.center-block
+				section
+					ul#top-bar.nav.nav-tabs.nav-justified
+						li
+							a(href="/login") Login
+						li.active
+							a(href="/user_registeration") Registration
+					.tab-content.tabs-login.col-lg-12.col-md-12.col-sm-12.cols-xs-12
+						#login-access.tab-pane.fade.active.in
+							h2
+								i.glyphicon.glyphicon-log-in
+								|  Registeration
+							form.form-horizontal(method="post",action='/user_registeration_post' accept-charset="utf-8", autocomplete="off", role="form")
+								.form-group
+									label.sr-only(for="username") ID
+									input#login_value.form-control(type="text", name="username", placeholder="ID", tabindex="1", value="")
+								.form-group
+									label.sr-only(for="password") Password
+									input#password.form-control(type="password", name="password", placeholder="Password", value="", tabindex="2")
+								.form-group
+									label.sr-only(for="confirm_password") Confirm Password
+									input#confirm_password.form-control(type="password", name="confirm_password", placeholder="Confirm Password", value="", tabindex="2")
+								.form-group
+									label.sr-only(for="email") E-mail
+									input#login_value.form-control(type="text", name="email", placeholder="Email", tabindex="1", value="")
+								.form-group
+									label.sr-only(for="tel") Phone Number
+									input#login_value.form-control(type="text", name="tel", placeholder="Phone Number", tabindex="1", value="")
+								.checkbox
+									label.control-label(for="business")
+										input#remember_me(type="checkbox", name="business", value="1", tabindex="3")
+										|  사업자 여부
+								br
+								.form-group
+									button#submit.btn.btn-lg.btn-primary(type="submit", name="log-me-in", tabindex="5") 확인
+		// 푸터를 밖으로 꺼내기 위해 한줄 추가
+		.row
+		footer(style="background-color: firebrick; color:white ")
+			div(calss="container")
+				br
+				.row
+					.col-sm-12(style="text-align: center;")
+						h5 Copyright © 2017
+						h5  4조 김규도, 김진원 
+		// 모달 구현
+		#smallModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="smallModal", aria-hidden="true")
+			.modal-dialog.modal-sm.modal-backdrop.true
+				.modal-content
+					.modal-header
+						button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+						h4#myModalLabel.modal-title 회원가입
+					.modal-body
+						h3 가입이 완료되었습니다.
+					.modal-footer
+						a.btn.btn-lg.btn-primary(href="/login")
+							| 확인
+
+		script(src="https://code.jquery.com/jquery-3.1.1.min.js")
+		script(src="/javascripts/bootstrap.js")
