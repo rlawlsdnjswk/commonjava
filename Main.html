@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="css/MS.css">
+        <title>맛집 GO</title>
+	</head>
+    
+    
+    
+   
+	<body>  
+        
+        
+        <!--   점보트론을 사용한 메인페이지      -->
+		<style type="text/css">
+			.jumbotron {
+				background-image: url('img/a.jpg');
+				background-size: cover;
+				text-shadow: black 0.2em 0.2em 0.2em;
+				color : white;
+			}
+    	</style>
+        <style>
+/*모달 창을 하얀색만 보이기 위해서 스타일 정의*/
+            .modal-backdrop{height:40%; }
+            
+        </style>
+
+
+
+출처: http://lemontia.tistory.com/420 [.]
+ 
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal({backdrop: true});
+    });
+    $("#myBtn2").click(function(){
+        $("#myModal2").modal({backdrop: false});
+    });
+    $("#myBtn3").click(function(){
+        $("#myModal3").modal({backdrop: "static"});
+    });
+});
+</script>
+
+        
+<!--		네비게이션 바 -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="nav-header">
+					<button type ="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class= "sr-only"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                    </button>
+                    <a class ="navbar-brand" href="#Main.html">  맛집 GO   </a> 
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class ="nav navbar-nav">
+                        <li class="active"><a href="#Main.html">소개 <span class="sr-only"></span></a></li>
+                        <li><a href="month.html"> 이달의 맛집</a></li>
+                        <li class="dropdwn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"> 게시판 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"> 맛집 탐방 </a></li>
+                                <li><a href="#"> 가입 인사 </a></li>
+                                <li><a href="#"> 리뷰 모아보기 </a></li>
+                                <li><a href="#"> 내 주변 맛집 </a></li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class ="fomr-group">
+                                <input type="text" calss="form-control" placeholder="내용을 입력하세요.">
+                                <button type="submit" class="btn btn-default">검색 </button>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdwon-toggle" data-toggle="dropdown" role="button">Login<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="login.html"> 로그인 </a></li>
+                                <li><a href="User_registeration.html"> 회원 가입 </a></li>
+                                                          
+                            </ul>        
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
+		<div class= "container">
+			<div class= "jumbotron">
+                <h1 calss= "text-center"  >원하는 맛집으로 가는 빠른 길</h1>
+                    <p class="text-center"> 포켓몬 고가 아닙니다</p>                
+			</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>이달의 맛집</h4>
+                    <p> 맛난 초밥을 먹고싶다면 이곳으로 오세요- 서울시 XX구 XX동 초밥집</p>
+                     <img src="img/b.jpg" id="imagepreview" style="width: 400; height: 256px;">
+                    <p><a class="btn btn-default" data-target="#modal" data-toggle="modal" >보기</a></p>
+                </div>
+                <div class="col-md-6">
+                    <h4>건강 상식</h4>
+                    <p> 인스턴트 식품- 어디까지 전자레인지에 돌려도 될까?</p>
+                    <p><a class="btn btn-default" data-target="modal" data-toggle="modal" >보기</a></p>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+	    <footer style ="background-color: firebrick; color:white ">
+            <div calss="container">
+                <br>
+                <div class="row">
+                    <div class = "col-sm-12" style="text-align: center;"><h5>Copyright &copy; 2017</h5><h5> 4조 김규도, 김진원 </h5></div>
+                </div>
+            </div>
+            
+            
+        </footer>
+<!--            모달 구현      -->
+        <div class="row">
+            <div class="modal fade" id="modal" tabindex="-1">
+                <div class="modal-dialog modal-backdrop false" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                이달의 맛집
+                            <button class="close" data-dimiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            서울시 XX시 XX구 초밥집 <br>
+                            연어초밥으로 유명한 초밥집. <br>
+                            저렴한 가격으로 즐기고 싶다면 이곳에서 <br>
+                            <img src="img/b.jpg" id="imagepreview" style="width: 400; height: 256px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+            
+            
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+	</body>
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+</html>

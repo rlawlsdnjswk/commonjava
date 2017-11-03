@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="css/MS.css">
+        <link rel="stylesheet" href="css/login.css">
+        <title>맛집 GO</title>
+	</head>
+    
+    
+    
+   
+	<body>  
+        
+        
+       
+        
+<!--		네비게이션 바 -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="nav-header">
+					<button type ="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class= "sr-only"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                    </button>
+                    <a class ="navbar-brand" href="Main.html">  맛집 GO   </a> 
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class ="nav navbar-nav">
+                        <li ><a href="Main.html">소개 <span class="sr-only"></span></a></li>
+                        <li ><a href="month.html"> 이달의 맛집</a></li>
+                        <li class="dropdwn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"> 게시판 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"> 맛집 탐방 </a></li>
+                                <li><a href="#"> 가입 인사 </a></li>
+                                <li><a href="#"> 리뷰 모아보기 </a></li>
+                                <li><a href="#"> 내 주변 맛집 </a></li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class ="fomr-group">
+                                <input type="text" calss="form-control" placeholder="내용을 입력하세요.">
+                                <button type="submit" class="btn btn-default">검색 </button>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdwon-toggle" data-toggle="dropdown" role="button">Login<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li class="active"><a href="login.html"> 로그인 </a></li>
+                                <li><a href="User_registeration.html"> 회원 가입 </a></li>
+                                                          
+                            </ul>        
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
+        
+<!--        로그인 박스-->
+    <div class="login-body">
+        <article class="container-login center-block">
+            <section>
+                <ul id="top-bar" class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="login.html">Login</a></li>
+                    <li><a href="User_registeration.html">Registration</a></li>
+                </ul>
+                <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+                    <div id="login-access" class="tab-pane fade active in">
+                        <h2><i class="glyphicon glyphicon-log-in"></i> Login</h2>						
+                        <form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+                            <div class="form-group ">
+                                <label for="login" class="sr-only">ID</label>
+                                    <input type="text" class="form-control" name="login" id="login_value" 
+                                        placeholder="ID" tabindex="1" value="" />
+                            </div>
+                            
+                            <div class="form-group ">
+                                <label for="password" class="sr-only">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Password" value="" tabindex="2" />
+                            </div>
+                            
+                           
+                            <br/>
+                            <div class="form-group ">				
+                                    <button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">확인</button>
+                            </div>
+                        </form>			
+                    </div>
+                </div>
+            </section>
+        </article>
+        
+    </div>
+        
+        
+<!--        푸터를 밖으로 꺼내기 위해 한줄 추가-->
+        <div class="row">
+           
+        </div>
+        
+        
+	    <footer style ="background-color: firebrick; color:white ">
+            <div calss="container">
+                <br>
+                <div class="row">
+                    <div class = "col-sm-12" style="text-align: center;"><h5>Copyright &copy; 2017</h5><h5> 4조 김규도, 김진원 </h5></div>
+                </div>
+            </div>
+            
+            
+        </footer>
+<!--            모달 구현      -->
+        <div class="row">
+            <div class="modal" id="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                이달의 맛집
+                            <button class="close" data-dimiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            서울시 XX시 XX구 초밥집 <br>
+                            연어초밥으로 유명한 초밥집. <br>
+                            저렴한 가격으로 즐기고 싶다면 이곳에서 <br>
+                            <img src="img/b.jpg" id="imagepreview" style="width: 400; height: 256px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+            
+            
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+	</body>
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+</html>
