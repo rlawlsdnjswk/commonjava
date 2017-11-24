@@ -18,7 +18,7 @@
        
         
 <!--		네비게이션 바 -->
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="nav-header">
 					<button type ="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -46,10 +46,10 @@
                         </li>
                         <li><a href="Mark_registeration.html">맛집 등록</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right">
-                        <div class ="fomr-group">
-                                <input type="text" calss="form-control" placeholder="내용을 입력하세요.">
-                                <button type="submit" class="btn btn-default">검색 </button>
+                    <form class="navbar-form navbar-right ">
+                        <div class ="fomr-group ">
+                                <input type="text" class="form-control " placeholder="내용을 입력하세요.">
+                                <button type="submit" class="btn btn-default glyphicon glyphicon-search ">검색</button>
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
@@ -68,13 +68,114 @@
         </nav>
       
         
-         <div class="row" >
-             <div class="col-md-3 "></div>
-             <div class="col-md-6 ">
-                    <img src="img/month.JPG" class="img-rounded"  id="imagepreview" style="width: 900px; height: 600px;">
-                
-             </div>
+        
+        
+        
+        
+        
+        
+<!--         맛집 상세페이지 -->
+        
+        
+        
+        <div class="container ">
             
+            
+<!--            맛집 이름 db에서 불러와 출력-->
+            <h1 class="text-center"> 졸라 맛있는 초밥집 </h1><hr>
+         
+<!--            맛집에 사용되는 이미지를 불러와 출력-->
+            <img src="img/b.jpg"  class="img-rounded" id="imagepreview" style="width: 400; height: 256px;">
+            <img src="img/a.jpg"  class="img-rounded" id="imagepreview" style="width: 400; height: 256px;">
+            <img src="img/b.jpg"  class="img-rounded" id="imagepreview" style="width: 400; height: 256px;">
+            <hr>
+            
+            <div class="row ">　</div>    
+            <div class="row  " >
+                <div class="col-md-4 col-md-offset-2 ">
+                        <h4 class="glyphicon glyphicon-align-justify"> 영업시간</h4><br>
+<!--                            시간 정보 DB에서 불러와 출력-->
+                            평일 : 오전 7 ~ 오후 8시<br>
+                            주말 : 오전 5 ~ 오후10시                
+                </div> 
+                <div class="col-md-4  ">
+                      <h4 class="glyphicon glyphicon-map-marker"> 주소</h4><br>
+<!--                           주소를  DB에서 불러와 출력-->
+                           서울시 행복구 원미동 338-88   
+                
+                </div>
+                
+            </div>
+            
+            <div class="row" >
+                <div class="col-md-4 col-md-offset-2 ">
+                        <h4 class="glyphicon glyphicon-phone-alt"> 전화번호</h4><br>
+<!--                           전화번호  DB에서 불러와 출력-->
+                            02) 1111-1111
+                            010-1111-1234                
+                </div>  
+               
+            </div>   
+            
+          
+            
+            <div class="row" >
+                <div class="col-md-6 col-md-offset-2">
+                      <h4 class="glyphicon glyphicon-comment"> 맛집 설명</h4><br>
+<!--                           설명을   DB에서 불러와 출력-->
+                          여긴 졸라 짱인 초밥집입니다.<br>
+                     여긴 졸라 짱인 초밥집입니다.<br>
+                     여긴 졸라 짱인 초밥집입니다.<br>
+                     여긴 졸라 짱인 초밥집입니다.
+                
+                </div>            
+            </div> 
+            
+            <div class="row" >
+                <div class="col-md-6 col-md-offset-2">
+                      <h4 class="glyphicon glyphicon-list-alt"> 메뉴 설명 </h4><br>
+<!--                           메뉴들을   DB에서 불러와 출력-->
+                          콜라      5000원<br>
+                          사이다    5000원<br>
+                          연어초밥  50000원
+                
+                </div>            
+            </div> 
+            
+            <div class="row" >
+                <div class="col-md-6 col-md-offset-2">
+                     <h4 class="glyphicon glyphicon-comment"> 리뷰 </h4>
+                   <a class="btn btn-default" data-target="#review_modal" data-toggle="modal" >보기</a><br>
+<!--                           리뷰중 하나를    DB에서 불러와  보기 샘플 처럼 출력-->
+                          우왕ㅇㅇ 졸라 마시쪄여ㅕㅕㅕ<br>
+                             단비꺼ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ
+                
+                </div>            
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+<!--        리뷰 보기를 눌렀을 경우 뜨는 팝업 모달-> 리뷰 상세 정보를  DB에서 불러와 출력, 리뷰 이름 - 작성자 내용 순으로 하나의 텍스트박스에 넣어서 출력  -->
+         <div class="row">
+            <div class="modal fade" id="review_modal" tabindex="-1">
+                <div class="modal-dialog modal-backdrop false" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                  리뷰 
+                            <button class="close" data-dimiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+<!--                            이곳에 모달의 바디 정보가 뜸 -->
+                            <img src="img/health.jpg" id="imagepreview" style="width: 400px; height: 550px;">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         
@@ -83,6 +184,14 @@
         
         
         
+        
+        
+        
+        
+        
+        
+<!--        푸터 구현-->
+        <hr>
 	    <footer style ="background-color: firebrick; color:white ">
             <div calss="container">
                 <br>
