@@ -1,0 +1,82 @@
+@import url(http://fonts.googlepis.com/earlyaccess/nanumgothic.css);
+{
+    font-family: 'Nanum Ghthic';
+}
+a{
+    color: #000000;
+    text-decoration: none;
+}
+a:hover{
+    color: #bbbbbb;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+
+/*네이게이션 영역*/
+
+.navbar-default{
+    background-color: firebrick;
+    border-color: firebrick;
+}
+.navbar-default .navbar-brand{
+/*    네비게이션 제목 색상*/
+    color: antiquewhite;
+}
+
+.navbar-default .navbar-brand : hover,
+.navbar-default .navbar-brand:focus{
+    background-color: transparent;
+    color: skyblue;
+}
+.navbar-default .navbar-nav > .active>a,
+.navbar-default .navbar-nav > .active>a:hover,
+.navbar-default .navbar-nav > .active>a:focus{
+/*    현재 선택된 네비게이션*/
+    color: red;
+    background-color: beige;
+
+}
+
+.navbar-default .navbar-nav > .li>a:hover,
+.navbar-default .navbar-nav > .li>a:focus{
+/*  네비게이션에 올렸을때*/
+    color: red;
+    background-color: beige;
+
+}
+.navbar-default .navbar-nav > .open>a,
+.navbar-default .navbar-nav > .open>a:hover,
+.navbar-default .navbar-nav > .oepn>a:focus{
+/*드랍다운이 열렸을 때*/
+    color: red;
+    background-color: beige;
+    text-decoration: none;
+
+}
+
+.navbar-default .navbar-nav>li > a{
+/*    네비게이션 기본 색상*/
+    color: antiquewhite;
+}
+
+@media (max-width:767px) {
+/*    해상도가 낮을 때 드랍다운 마우스 올렸을때*/
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a
+    {   
+        color: antiquewhite;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a: hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a: focus 
+    {       
+        color:antiquewhite;
+    }
+  
+}
+
+
+
+
+
+
+
