@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="/stylesheets/MS.css">
+        
+
+
+            <script language="javascript">
+                // 주소 검색 API
+
+            // opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
+            //document.domain = "abc.go.kr";
+
+            function goPopup(){
+                // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+                var pop = window.open("jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+
+                // 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+                //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+            }
+            /** API 서비스 제공항목 확대 (2017.02) **/
+            function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+                                    , detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
+                // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+                document.form.roadAddrPart1.value = roadAddrPart1;
+                document.form.roadAddrPart2.value = roadAddrPart2;
+                document.form.addrDetail.value = addrDetail;
+                document.form.zipNo.value = zipNo;
+            }
+            
+                
+            function submitContents(option) {
+            var title = $('#title').val();
+            var tel = $('#tel').val();
+            var juso1 = $('#juso1').val();
+            var juso2 = $('#juso2').val();
+            var juso3 = $('#juso3').val();
+            for(var i = 0; i<total; i++){
+                var menu+i = $('#menu'+i).val();
+                var price+i = $('#price'+i).val();
+            }
+            var password = $('#password').val();
+           
+                
+                
+            if(option == 'add'){
+            // 새 글 등록 시
+            if(title == '' || tel == '' || juso == '' || password == '') {
+                alert("*표시가 붙은 필수 입력 정보를 입력바랍니다.");
+                return;
+            } else {
+                $('#writeAction').submit();
+            }
+            }
+        }
+            
+            function searchContent() {
+            if($('#searchWord').val == ''){
+                alert("검색어를 입력해주세요!!!");
+            } else {
+                $('#searchAction').submit();
+            }
+        }
+                
+        
+            </script>
+            <script>
+            var arrInput = new Array(0);
+            var arrInputValue = new Array(0);
+            var total = 0;
+
+            function addInput() {
+              arrInput.push(arrInput.length);
+              arrInputValue.push("");
+              display();
+            }
+
+            function display() {
+              document.getElementById('parah').innerHTML="";
+              for (intI=1;intI<arrInput.length;intI++) {
+                document.getElementById('parah').innerHTML+=createInput(arrInput[intI], arrInputValue[intI]);
+              }
+            }
+
+            function saveValue(intId,strValue) {
+              arrInputValue[intId]=strValue;
+            }  
+
+
+
+            //이곳에서 파라미터 id부여가 이루어짐
+            function createInput(id,value) {
+                total++;
+              return "  <div class='form-group'><div class='col-sm-4 col-md-offset-2 '>   <input type='text'  class='form-control' name='menu["+id+"]' id='menu["+id+"]' onChange='javascript:saveValue("+id+",this.value)' value=' "+value +"'> </div>  <div class='col-sm-2  '>   <input type='text'   class='form-control' name='price["+id+"]' id='price["+id+"]' onChange='javascript:saveValue("+id+",this.value)' value=' "+value+"'> </div> ";
+            }
+
+
+            function deleteInput() {
+              if (arrInput.length > 0) { 
+                 total--;
+                 arrInput.pop(); 
+                 arrInputValue.pop();
+              }
+              display(); 
+            }
+            
+            function totalReturn(){
+                return total;
+            }
+            </script>
+        
+        <title>맛집 GO</title>
+        
+        
+        
+	</head>
+    
+	<body>  
+              
+<!--		네비게이션 바 -->
+			<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="nav-header">
+					<button type ="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class= "sr-only"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                    </button>
+                    <a class ="navbar-brand" href="/">  맛집 GO   </a> 
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class ="nav navbar-nav">
+                        <li><a href="/">소개 <span class="sr-only"></span></a></li>
+                        <li><a href="month"> 이달의 맛집</a></li>
+                        <li class="dropdwn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"> 게시판 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="mark_menu"> 맛집 탐방 </a></li>
+                                <li><a href="#"> 가입 인사 </a></li>
+                                <li><a href="#"> 리뷰 모아보기 </a></li>
+                                <li><a href="#"> 내 주변 맛집 </a></li>                                
+                            </ul>
+                        </li>
+                        <li class="active"><a href="mark_registeration">맛집 등록</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right"  action="/search" method="get" id="searchAction" name="searchAction">
+                        <div class ="search">
+                                <input type="text" class="serch_word" id="searchWord" name="searchWord" placeholder="내용을 입력하세요.">
+                            <a href="#" onclick="searchContent();"> <button class="btn btn-default glyphicon glyphicon-search ">검색</button></a>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                  
+                        <% if(!user){ %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdwon-toggle" data-toggle="dropdown" role="button">Login<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="login"> 로그인 </a></li>
+                                <li><a href="user_registeration"> 회원 가입 </a></li>                 
+                            </ul>
+                        </li>
+                        <% } else { %>
+                        <li > <a href="/logout_post"  role="button">Logout</a></li>
+                        <% } %>
+                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
+        
+
+        
+    <div class="row">
+         <div class="col-md-4 col-md-offset-4">
+          <form id="writeAction" class="form-horizontal" action="/mark_registeration_post" method="post" ENCTYPE="multipart/form-data">
+            <fieldset>
+
+              <!-- Form Name -->
+              <legend>맛집 정보 등록</legend> *표시는 필수 입력 정보입니다.
+
+                 
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="title">*맛집 명</label>
+                <div class="col-sm-10">
+                  <input type="text" placeholder="맛집 이름" class="form-control" name="title" id="title">
+                </div>
+              </div>
+               <div class="writer">
+                  <input type="hidden" class="writer" name="writer" id="writer" value="<%=user.username%>">
+                </div>
+                    
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="tel">*연락처</label>
+                <div class="col-sm-10">
+                  <input type="text" placeholder="전화번호 및 홈페이지" class="form-control" name="tel" id="tel">
+                </div>
+              </div>
+
+              <!-- Text input-->
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="juso">*주소</label>
+                <div class="col-sm-3">
+                  <input type="text" placeholder="시/군/구" class="form-control" name="juso1" id="juso1">
+                </div>
+
+                <div class="col-sm-4">
+                  <input type="text" placeholder="번지/도로명" class="form-control" name="juso2" id="juso2">
+                </div>
+                <div class="col-sm-3">
+                <input type="button" class="form-control" value="주소검색" onclick="goPopup();">
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput" for="juso">상세주소</label>
+                <div class="col-sm-10">
+                  <input type="text" placeholder="상세주소" class="form-control" name="juso3" id="juso3">
+                </div>
+
+              </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput" for="juso">영업시간</label>
+                <div class="col-sm-3">
+                  <input type="text" placeholder="시작시간" class="form-control" name="open" id="open">
+                  </div>
+                    ex: 10:00 / 22:00
+                     <div class="col-sm-3">
+                <input type="text" placeholder="마감시간" class="form-control" name="close" id="close">
+                        </div>
+              </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">메뉴</label>
+            
+                <div class="col-sm-4">
+                  <input type="text" id="menu[0]"  name="menu[0]" placeholder="메뉴" class="form-control">
+                </div>
+
+                <div class="col-sm-2">
+                  <input type="text" id="price[0]"  name="price[0]" placeholder="가격" class="form-control">
+                   
+              <td align="left"></td>
+                </div>
+              
+                 <div class="col-sm-2">
+                    <input  name="addButton" type="button" style="cursor:hand" onClick="addInput();" value="추가" class="form-control">
+                 </div>
+                    <div class="col-sm-2">
+                    <input type="button" value="삭제" onclick="deleteInput();" class="form-control">                
+                </div>
+              
+                            
+           
+               </div>
+ <!--                이곳에 추가된 폼들이 나옴-->
+                <div id="parah"><br></div>
+
+                
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="description">설 명</label>
+                <div class="col-sm-10">
+                  <input type="text" placeholder="맛집에 대해 설명해주세요" class="form-control" name="description" id="description">
+                </div>
+                </div>
+                
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="password">*비 밀 번 호</label>
+                <div class="col-sm-3">
+                  <input type="password" class="form-control" name="password" id="password">
+                </div>비밀번호는 수정,삭제시 이용됩니다.
+                </div>
+
+    <!--             파일 입출력-->
+                <table width="500" border="0" align="center" bgcolor="dddddd">
+                        <tr>
+                           <td width="600" colspan="2" align="center"><b>맛집 이미지 업로드</b></td>
+                        <tr>
+                                <td width="100" align="center"></td>
+                                <td width="500"> <input type="file" name="UploadFile" id="UploadFile" size="20" multiple>(파일의 용량 제한 : 20M)</td>
+                        </tr>
+                        <tr>    
+
+                        </tr>
+                    </table>              
+            
+            
+ 
+      
+            
+            
+            
+
+
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="pull-right">
+                    <a onclick="submitContents('add')"><button>확인</button></a>
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </form>
+        </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
+
+
+        
+        
+        
+        
+        
+        
+        
+	    <footer style ="background-color: firebrick; color:white ">
+            <div calss="container">
+                <br>
+                <div class="row">
+                    <div class = "col-sm-12" style="text-align: center;"><h5>Copyright &copy; 2017</h5><h5> 4조 김규도, 김진원 </h5></div>
+                </div>
+            </div>
+            
+            
+        </footer>
+
+            
+            
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="javascripts/bootstrap.js"></script>
+	</body>
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+</html>

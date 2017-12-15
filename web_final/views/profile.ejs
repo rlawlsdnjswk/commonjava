@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="/stylesheets/MS.css">
+        <title>맛집 GO</title>
+	</head>
+    
+    
+    
+   
+	<body>  
+        
+        
+        <!--   점보트론을 사용한 메인페이지      -->
+		<style type="text/css">
+			.jumbotron {
+				background-image: url('/images/mainimage/a.jpg');
+				background-size: cover;
+				text-shadow: black 0.2em 0.2em 0.2em;
+				color : white;
+			}
+    	</style>
+        <style>
+/*모달 창을 하얀색만 보이기 위해서 스타일 정의*/
+            .modal-backdrop{height:40%; }
+            
+        </style>
+<!--        Carousel -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<script>
+
+      function searchContent() {
+            if($('#searchWord').val == ''){
+                alert("검색어를 입력해주세요!!!");
+            } else {
+                $('#searchAction').submit();
+            }
+        }
+</script>
+
+        
+<!--		네비게이션 바 -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="nav-header">
+					<button type ="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class= "sr-only"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                    </button>
+                    <a class ="navbar-brand" href="/">  맛집 GO   </a> 
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class ="nav navbar-nav">
+                        <li class="active"><a href="/">소개 <span class="sr-only"></span></a></li>
+                        <li><a href="month"> 이달의 맛집</a></li>
+                        <li class="dropdwn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"> 게시판 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="mark_menu"> 맛집 탐방 </a></li>
+                                <li><a href="#"> 가입 인사 </a></li>
+                                <li><a href="#"> 리뷰 모아보기 </a></li>
+                                <li><a href="#"> 내 주변 맛집 </a></li>                                
+                            </ul>
+                        </li>
+                        <li><a href="Mark_registeration">맛집 등록</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right"  action="/search" method="get" id="searchAction" name="searchAction">
+                        <div class ="search">
+                                <input type="text" calss="serch_word" id="searchWord" name="searchWord" placeholder="내용을 입력하세요.">
+                            <a href="#" onclick="searchContent();"> <button class="btn btn-default glyphicon glyphicon-search ">검색</button></a>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                          <% if(!user){ %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdwon-toggle" data-toggle="dropdown" role="button">Login<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="login"> 로그인 </a></li>
+                                <li><a href="user_registeration"> 회원 가입 </a></li>                 
+                            </ul>
+                        </li>
+                        <% } else { %>
+                        <li > <a href="/logout_post"  role="button">Logout</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <hr>
+      
+		     
+    <div class="row">
+         <div class="col-md-4 col-md-offset-4">
+            <fieldset>
+                 <!-- Form Name -->
+              <legend><br><br>개인 정보 확인</legend>
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">아이디</label>
+                
+                  <%=user.username%>
+                </div>
+             
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">연락처</label>
+              
+                  <%=user.tel%>
+                </div>
+            
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">이메일</label>
+                
+                  <%=user.email%>
+                  </div>
+              
+            
+
+             
+             
+                <br><br><br>
+                <legend>예약 내역</legend>
+                <%for(var i = 0; i<user.reserve.length; i++){%>
+                <form action='/reserve_cancel' method="post">
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="textinput">맛집 이름</label>
+                    
+                  <a href='mark_menu_detail?id=<%=user.reserve[user.reserve.length-i-1].storeID%>'> <%=user.reserve[user.reserve.length-i-1].reservestore%></a>
+                </div>
+                
+                <div class="form-group">
+                <label class="col-sm-3 control-label" for="textinput">예약 날짜</label>
+                
+                    <%=user.reserve[user.reserve.length-i-1].reservetime.split(' ')[0]%>
+                </div>                
+              
+               <div class="form-group">
+                <label class="col-sm-3 control-label" for="textinput">예약 시간</label>
+              
+                    
+                    <%=user.reserve[user.reserve.length-i-1].reservetime.split(' ')[1]%> : 00
+                </div>  
+                
+                
+
+
+            
+               <div class="form-group">
+                <label class="col-sm-3 control-label" for="textinput">추가 메모</label>
+           
+                    <%=user.reserve[user.reserve.length-i-1].reservermemo%>
+                   
+                </div>
+                <input type='hidden' id='storeID' name='storeID' value='<%=user.reserve[user.reserve.length-i-1].storeID%>'>
+                <input type='hidden' id='reserveinfo' name='reserveinfo' value='<%=user.reserve[user.reserve.length-i-1]%>'>
+                </form>
+                <br>
+                <hr>
+                <%}%>
+             </fieldset>
+        </div>
+        </div>
+        <hr>
+        
+        
+	    <footer style ="background-color: firebrick; color:white ">
+            <div calss="container">
+                <br>
+                <div class="row">
+                    <div class = "col-sm-12" style="text-align: center;"><h5>Copyright &copy; 2017</h5><h5> 4조 김규도, 김진원 </h5></div>
+                </div>
+            </div>
+            
+            
+        </footer>
+
+                
+            
+            
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="javascripts/bootstrap.js"></script>
+	</body>
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+</html>

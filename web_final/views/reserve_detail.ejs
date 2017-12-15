@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="/stylesheets/MS.css">
+        <title>맛집 GO</title>
+	</head>
+    
+    
+    
+   
+	<body>  
+        
+        
+        <!--   점보트론을 사용한 메인페이지      -->
+		<style type="text/css">
+			.jumbotron {
+				background-image: url('/images/mainimage/a.jpg');
+				background-size: cover;
+				text-shadow: black 0.2em 0.2em 0.2em;
+				color : white;
+			}
+    	</style>
+        <style>
+/*모달 창을 하얀색만 보이기 위해서 스타일 정의*/
+            .modal-backdrop{height:40%; }
+            
+        </style>
+<!--        Carousel -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal({backdrop: true});
+    });
+    $("#myBtn2").click(function(){
+        $("#myModal2").modal({backdrop: false});
+    });
+    $("#myBtn3").click(function(){
+        $("#myModal3").modal({backdrop: "static"});
+    });
+});
+      function searchContent() {
+            if($('#searchWord').val == ''){
+                alert("검색어를 입력해주세요!!!");
+            } else {
+                $('#searchAction').submit();
+            }
+        }
+</script>
+
+        
+<!--		네비게이션 바 -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="nav-header">
+					<button type ="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class= "sr-only"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                    </button>
+                    <a class ="navbar-brand" href="/">  맛집 GO   </a> 
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class ="nav navbar-nav">
+                        <li class="active"><a href="/">소개 <span class="sr-only"></span></a></li>
+                        <li><a href="month"> 이달의 맛집</a></li>
+                        <li class="dropdwn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"> 게시판 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="mark_menu"> 맛집 탐방 </a></li>
+                                <li><a href="#"> 가입 인사 </a></li>
+                                <li><a href="#"> 리뷰 모아보기 </a></li>
+                                <li><a href="#"> 내 주변 맛집 </a></li>                                
+                            </ul>
+                        </li>
+                        <li><a href="Mark_registeration">맛집 등록</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right"  action="/search" method="get" id="searchAction" name="searchAction">
+                        <div class ="search">
+                                <input type="text" calss="serch_word" id="searchWord" name="searchWord" placeholder="내용을 입력하세요.">
+                            <a href="#" onclick="searchContent();"> <button class="btn btn-default glyphicon glyphicon-search ">검색</button></a>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                          <% if(!user){ %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdwon-toggle" data-toggle="dropdown" role="button">Login<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="login"> 로그인 </a></li>
+                                <li><a href="user_registeration"> 회원 가입 </a></li>                 
+                            </ul>
+                        </li>
+                        <% } else { %>
+                        <li > <a href="/logout_post"  role="button">Logout</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+      <div class="row">
+         <div class="col-md-4 col-md-offset-4">
+          <form class="form-horizontal" role="form" action='/reserve_post' method='post'>
+            <fieldset>
+
+              <!-- Form Name -->
+              <legend>예약 정보 입력</legend>
+
+              <!-- Text input-->
+              
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">맛집 명 </label>
+                <div class="col-sm-10">
+                <input type="hidden" name="reservestore" id="reservestore" value="<%=content.title%>"><%=content.title%>
+                <input type="hidden" name="storeID" id="storeID" value="<%=content._id%>">
+
+                </div>
+              </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">날짜 </label>
+                <div class="col-sm-10">
+                <input type="hidden" name="reservetime" id="reservetime" value="<%=date%>"><%=date%>:00 
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">인원</label>
+                <div class="col-sm-10">
+                    4명 
+                </div>
+              </div>
+             <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">예약자</label>
+                <div class="col-sm-3">
+                      <input type="text" placeholder="예약자 이름" id='reserver' name='reserver' class="form-control" required>
+                      <input type="hidden" name="userID" id="userID" value="<%=user._id%>">
+
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">연락처</label>
+                <div class="col-sm-4">
+                      <input type="text" id='reservertel' name='reservertel' placeholder="010-XXXX-XXXX" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">메모</label>
+                <div class="col-sm-10">
+                  <input type="text" id='reservermemo' name='reservermemo' placeholder="예약시 참고사항이나 문의사항을 적어주세요" class="form-control">
+                </div>
+
+               </div>
+        
+              </fieldset>
+            
+             
+             
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="pull-right">
+                      <a href="/mark_menu_detail?id=<%=content._id%>"><button class="btn btn-default">취소</button></a>
+                      <a href="/reserve/post"><button type="submit" class="btn btn-primary">확인</button></a>
+                  </div>
+                </div>
+              </div>
+            </form>
+             
+        </div>
+        </div>
+        
+        
+        
+	    <footer style ="background-color: firebrick; color:white ">
+            <div calss="container">
+                <br>
+                <div class="row">
+                    <div class = "col-sm-12" style="text-align: center;"><h5>Copyright &copy; 2017</h5><h5> 4조 김규도, 김진원 </h5></div>
+                </div>
+            </div>
+            
+            
+        </footer>
+<!--            모달 구현      -->
+        <div class="row">
+            <div class="modal fade" id="modal" tabindex="-1">
+                <div class="modal-dialog modal-backdrop false" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                이달의 맛집
+                            <button class="close" data-dimiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            서울시 XX시 XX구 초밥집 <br>
+                            연어초밥으로 유명한 초밥집. <br>
+                            저렴한 가격으로 즐기고 싶다면 이곳에서 <br><br>
+                            <a href="month"><img src="/images/mainimage/b.jpg"  class="img-rounded"id="imagepreview" style="width: 400; height: 256px;"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+<!--        두번째 모달-->
+        <div class="row">
+            <div class="modal fade" id="modal2" tabindex="-1">
+                <div class="modal-dialog modal-backdrop false" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                                건강 상식
+                            <button class="close" data-dimiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            
+                            <img src="/images/mainimage/health.jpg" id="imagepreview" style="width: 400px; height: 550px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+            
+            
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="javascripts/bootstrap.js"></script>
+	</body>
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+</html>

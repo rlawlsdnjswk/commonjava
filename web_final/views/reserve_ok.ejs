@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="/stylesheets/MS.css">
+        <link rel="stylesheet" href="/stylesheets/login.css">
+        <script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal({backdrop: true});
+    });
+    $("#myBtn2").click(function(){
+        $("#myModal2").modal({backdrop: false});
+    });
+    $("#myBtn3").click(function(){
+        $("#myModal3").modal({backdrop: "static"});
+    });
+});
+      function searchContent() {
+            if($('#searchWord').val == ''){
+                alert("검색어를 입력해주세요!!!");
+            } else {
+                $('#searchAction').submit();
+            }
+        }
+</script>
+        <title>맛집 GO</title>
+	</head>
+    
+    
+    
+   
+	<body>  
+        
+        
+       
+        
+<!--		네비게이션 바 -->
+			<nav class="navbar navbar-default ">
+			<div class="container-fluid">
+				<div class="nav-header">
+					<button type ="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class= "sr-only"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                        <span class= "icon-bar"></span>
+                    </button>
+                    <a class ="navbar-brand" href="/">  맛집 GO   </a> 
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class ="nav navbar-nav">
+                        <li class="active"><a href="/">소개 <span class="sr-only"></span></a></li>
+                        <li><a href="month"> 이달의 맛집</a></li>
+                        <li class="dropdwn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"> 게시판 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="mark_menu"> 맛집 탐방 </a></li>
+                                <li><a href="#"> 가입 인사 </a></li>
+                                <li><a href="#"> 리뷰 모아보기 </a></li>
+                                <li><a href="#"> 내 주변 맛집 </a></li>                                
+                            </ul>
+                        </li>
+                        <li><a href="Mark_registeration">맛집 등록</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right"  action="/search" method="get" id="searchAction" name="searchAction">
+                        <div class ="search">
+                                <input type="text" calss="serch_word" id="searchWord" name="searchWord" placeholder="내용을 입력하세요.">
+                            <a href="#" onclick="searchContent();"> <button class="btn btn-default glyphicon glyphicon-search ">검색</button></a>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdwon-toggle" data-toggle="dropdown" role="button">Login<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="login"> 로그인 </a></li>
+                                <li><a href="User_registeration"> 회원 가입 </a></li>
+                                                          
+                            </ul>        
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
+        
+<!--        로그인 박스-->
+    <div class="login-body">
+        <article class="container-login center-block">
+            <section>
+                <ul id="top-bar" class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="login">Login</a></li>
+                    <li><a href="user_registeration">Registration</a></li>
+                </ul>
+                <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+                    <div id="login-access" class="tab-pane fade active in">
+                        <h2><i class="glyphicon glyphicon-log-in"></i> Login</h2>						
+                        <form action="/login_post" method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+                            <div class="form-group ">
+                                <label for="login" class="sr-only">ID</label>
+                                    <input type="text" class="form-control" name="username" id="username" 
+                                        placeholder="ID" tabindex="1" value="" />
+                            </div>
+                            
+                            <div class="form-group ">
+                                <label for="password" class="sr-only">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Password" value="" tabindex="2" />
+                            </div>
+                            
+                           
+                            <br/>
+                            <div class="form-group ">				
+                                    <button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">로그인</button>
+                            </div>
+                        </form>			
+                    </div>
+                </div>
+            </section>
+        </article>
+        
+    </div>
+        
+        
+        
+<!--        푸터를 밖으로 꺼내기 위해 한줄 추가-->
+        <div class="row">
+           
+        </div>
+        
+        
+	    <footer style ="background-color: firebrick; color:white ">
+            <div calss="container">
+                <br>
+                <div class="row">
+                    <div class = "col-sm-12" style="text-align: center;"><h5>Copyright &copy; 2017</h5><h5> 4조 김규도, 김진원 </h5></div>
+                </div>
+            </div>
+            
+            
+        </footer>
+<!--            모달 구현      -->
+        <html>  
+<head>
+    
+    
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+<div class="maintext">
+
+</div>
+<div id="boxes">
+  <div style=" " id="dialog" class="window">
+    
+   <div class="modal-dialog vertical-align-center modal-sm modal-backdrop true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">예약확인</h4>
+      </div>
+      <div class="modal-body "  style="text-align: center;" >
+        <h2 class=" glyphicon glyphicon-ok text-success " ></h2>
+            <h3>예약이 완료되었습니다.</h3>
+      </div>
+      <div class="modal-footer">
+
+<!--          확인 누를시 이동할 페이지-->
+        <a href="/profile" class="btn btn-lg btn-primary">확인</a>
+      </div>
+    </div>  
+  </div>
+          
+   
+        
+  </div>
+  <div style="width: 1478px; font-size: 32pt; color:white; height: 602px; display: none; opacity: 0.8;" id="mask"></div>
+</div>
+    
+            
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="/javascripts/bootstrap.js"></script>
+	</body>
+
+
+
+    
+    
+    
+    
+<!--    모달을 맨처음 띄우기 위한 스크립트-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script> 
+<script src="/javascripts/main.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+</html>
+            
+            
+      
+	</body>
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+</html>
